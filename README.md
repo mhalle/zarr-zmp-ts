@@ -122,4 +122,4 @@ zmp show output.zmp /volume/c/0/0/0
 
 ## License
 
-BSD-3-Clause
+Apache-2.0

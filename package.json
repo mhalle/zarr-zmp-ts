@@ -1,6 +1,6 @@
 {
   "name": "zarr-zmp",
-  "version": "0.2.0",
+  "version": "0.16.0",
   "description": "Read-only Zarr v3 store backed by ZMP manifest parquet files",
   "type": "module",
   "main": "dist/index.js",

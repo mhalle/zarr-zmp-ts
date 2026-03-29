@@ -104,7 +104,7 @@ export class ZMPStore implements AsyncReadable {
         mounts.push(zp);
       } else if (entry.addressing.includes(Addressing.LINK) && entry.resolve) {
         const resolve = JSON.parse(entry.resolve);
-        const target = resolve._path?.target;
+        const target = (resolve.path ?? resolve._path)?.target;
         if (target) links.set(zp, new ZPath(target));
       }
     }

@@ -78,7 +78,7 @@ export async function resolveEntry(
   // 3. Link — follow target
   if (flags.includes(Addressing.LINK) && entry.resolve != null) {
     const resolveDict = JSON.parse(entry.resolve) as ResolveDict;
-    const pathParams = resolveDict._path as Record<string, unknown> | undefined;
+    const pathParams = (resolveDict.path ?? resolveDict._path) as Record<string, unknown> | undefined;
     if (pathParams?.target) {
       const v = visited ?? new Set<string>();
       if (v.has(entry.path)) {
@@ -100,7 +100,7 @@ export async function resolveEntry(
   if (flags.includes(Addressing.RESOLVE) && entry.resolve != null && resolvers) {
     const resolveDict = JSON.parse(entry.resolve) as ResolveDict;
     for (const [scheme, params] of Object.entries(resolveDict)) {
-      if (scheme.startsWith("_")) continue;
+      if (scheme.startsWith("_") || scheme === "path") continue;
       const resolver = resolvers[scheme];
       if (!resolver) continue;
       const schemeBases = collectSchemeBases(scheme, baseResolve);
